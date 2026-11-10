@@ -137,6 +137,7 @@ final class AppState {
         startInbox()
         Task { await refreshDevices() }
         reloadPlans()
+        runs = RunOutcome.loadPast().map { RunRecord(startedAt: $0.report?.startedAt ?? Date(), outcome: $0) }
     }
 
     // MARK: Devices

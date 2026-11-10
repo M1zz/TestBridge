@@ -44,6 +44,19 @@ public struct RunOutcome: Codable, Sendable {
     public var logTail: String
 
     public var passed: Bool { report?.passed ?? (exitCode == 0) }
+
+    /// Runs already on disk, newest first, so results survive quitting the app. Only runs that wrote a report count.
+    public static func loadPast(from directory: URL = Paths.runs, limit: Int = 40) -> [RunOutcome] {
+        let dirs = (try? FileManager.default.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil)) ?? []
+        // Run folders start with an ISO timestamp, so the name order is the time order.
+        return dirs.sorted { $0.lastPathComponent > $1.lastPathComponent }.lazy.compactMap { dir -> RunOutcome? in
+            guard let data = try? Data(contentsOf: dir.appendingPathComponent("report.json")),
+                  let report = try? RunReport.decode(data) else { return nil }
+            return RunOutcome(planName: report.planName, exitCode: report.passed ? 0 : 1, report: report,
+                              outputDirectory: dir.path,
+                              xcresultPath: dir.appendingPathComponent("result.xcresult").path, logTail: "")
+        }.prefix(limit).map { $0 }
+    }
 }
 
 public enum XcodebuildService {

@@ -1440,6 +1440,36 @@
           }
         }
       }
+    },
+    "Open screenshot": {
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "스크린샷 열기"
+          }
+        }
+      }
+    },
+    "Show on the screenshot": {
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "스크린샷에서 보기"
+          }
+        }
+      }
+    },
+    "Screenshot with findings marked": {
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "위반 위치가 표시된 스크린샷"
+          }
+        }
+      }
     }
   },
   "version": "1.1"
