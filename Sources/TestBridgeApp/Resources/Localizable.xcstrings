@@ -1470,6 +1470,16 @@
           }
         }
       }
+    },
+    "Other": {
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "기타"
+          }
+        }
+      }
     }
   },
   "version": "1.1"

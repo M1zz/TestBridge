@@ -9,21 +9,28 @@ struct PlanEditorView: View {
         @Bindable var state = state
         HSplitView {
             VStack(spacing: 0) {
-                List(state.plans, selection: $state.selectedPlanID) { file in
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(file.displayName)
-                        HStack(spacing: 6) {
-                            if let plan = file.plan {
-                                Text(plan.platform.displayName)
-                                Text("·")
-                                Text("\(plan.steps.count) steps")
-                            } else {
-                                Label("invalid", systemImage: "exclamationmark.triangle").foregroundStyle(.orange)
+                List(selection: $state.selectedPlanID) {
+                    ForEach(state.planGroups, id: \.title) { group in
+                        Section(group.title.isEmpty ? String(localized: "Other") : group.title) {
+                            ForEach(group.files) { file in
+                                VStack(alignment: .leading, spacing: 2) {
+                                    // Flows are named "<app> · <flow>"; under the app's own heading the prefix is noise.
+                                    Text(file.displayName.replacingOccurrences(of: "\(group.title) · ", with: ""))
+                                    HStack(spacing: 6) {
+                                        if let plan = file.plan {
+                                            Text(plan.platform.displayName)
+                                            Text("·")
+                                            Text("\(plan.steps.count) steps")
+                                        } else {
+                                            Label("invalid", systemImage: "exclamationmark.triangle").foregroundStyle(.orange)
+                                        }
+                                    }
+                                    .font(.caption).foregroundStyle(.secondary)
+                                }
+                                .tag(file.id)
                             }
                         }
-                        .font(.caption).foregroundStyle(.secondary)
                     }
-                    .tag(file.id)
                 }
                 .onChange(of: state.selectedPlanID) { _, _ in state.loadEditor() }
                 Divider()

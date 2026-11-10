@@ -74,6 +74,19 @@ final class AppState {
     /// The developer's own apps from `Apps.json`; picking one fills the platform and bundle identifier.
     var appPresets: [AppPreset] = AppPreset.load()
 
+    /// Plans grouped by the app they test, the current target's app first. Named apps come from `Apps.json`;
+    /// anything else is grouped under its bundle identifier.
+    var planGroups: [(title: String, files: [PlanFile])] {
+        let names = Dictionary(appPresets.map { ($0.bundleIdentifier, $0.name) }, uniquingKeysWith: { first, _ in first })
+        let grouped = Dictionary(grouping: plans) { $0.plan?.bundleIdentifier ?? "" }
+        return grouped.map { (bundle: $0.key, title: names[$0.key] ?? $0.key, files: $0.value) }
+            .sorted { a, b in
+                if (a.bundle == bundleIdentifier) != (b.bundle == bundleIdentifier) { return a.bundle == bundleIdentifier }
+                return a.title.localizedStandardCompare(b.title) == .orderedAscending
+            }
+            .map { (title: $0.title, files: $0.files) }
+    }
+
     func select(_ preset: AppPreset) {
         platform = preset.platform
         bundleIdentifier = preset.bundleIdentifier
@@ -216,7 +229,7 @@ final class AppState {
         let newPlan = plan ?? TestPlan(name: "New plan", platform: platform,
                                        bundleIdentifier: bundleIdentifier.isEmpty ? "com.example.MyApp" : bundleIdentifier,
                                        steps: [.assertExists(ElementQuery(label: "Change me"), timeout: 5)])
-        let safe = newPlan.name.replacingOccurrences(of: "[^A-Za-z0-9_-]+", with: "-", options: .regularExpression)
+        let safe = newPlan.name.replacingOccurrences(of: "[^\\p{L}\\p{N}_-]+", with: "-", options: .regularExpression)
         var url = Paths.plans.appendingPathComponent("\(safe).json")
         var n = 2
         while FileManager.default.fileExists(atPath: url.path) {

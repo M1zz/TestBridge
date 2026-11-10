@@ -61,7 +61,7 @@ public final class PlanInbox: @unchecked Sendable {
     /// Used by the CLI: copies a plan into the inbox so the running GUI picks it up.
     public static func deposit(_ plan: TestPlan, directory: URL = Paths.inbox) throws -> URL {
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
-        let safe = plan.name.replacingOccurrences(of: "[^A-Za-z0-9_-]+", with: "-", options: .regularExpression)
+        let safe = plan.name.replacingOccurrences(of: "[^\\p{L}\\p{N}_-]+", with: "-", options: .regularExpression)
         let url = directory.appendingPathComponent("\(Int(Date().timeIntervalSince1970))_\(safe).json")
         try plan.encoded().write(to: url)
         return url

@@ -11,7 +11,8 @@ struct RunConsoleView: View {
         HSplitView {
             List(state.runs, selection: $state.selectedRunID) { run in
                 HStack {
-                    Image(systemName: run.outcome.passed ? "checkmark.circle.fill" : "xmark.circle.fill")
+                    Image(systemName: run.outcome.report?.crashed == true ? "bolt.circle.fill"
+                          : run.outcome.passed ? "checkmark.circle.fill" : "xmark.circle.fill")
                         .foregroundStyle(run.outcome.passed ? .green : .red)
                     VStack(alignment: .leading) {
                         Text(run.outcome.planName)
@@ -53,7 +54,7 @@ struct RunConsoleView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 12) {
                 HStack {
-                    Text(outcome.passed ? "PASSED" : "FAILED")
+                    Text(outcome.report?.crashed == true ? "CRASHED" : outcome.passed ? "PASSED" : "FAILED")
                         .font(.title3.weight(.bold))
                         .foregroundStyle(outcome.passed ? .green : .red)
                     Text("xcodebuild exit \(outcome.exitCode)").foregroundStyle(.secondary)

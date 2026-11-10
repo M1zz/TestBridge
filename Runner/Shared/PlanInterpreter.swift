@@ -29,13 +29,14 @@ final class PlanInterpreter {
         var trees: [String: String] = [:]
         var higAudits: [HIGAuditReport] = []
         var hasFailed = false
+        var crashedAtStep: Int?
 
         if plan.steps.first?.actionName != "launch" {
             app.launch()
         }
 
         for (index, step) in plan.steps.enumerated() {
-            if hasFailed && plan.stopOnFailure {
+            if crashedAtStep != nil || (hasFailed && plan.stopOnFailure) {
                 reports.append(.init(index: index, action: step.actionName, summary: step.summary,
                                      status: .skipped, message: "Skipped after earlier failure", durationMs: 0))
                 continue
@@ -59,6 +60,22 @@ final class PlanInterpreter {
                                      status: .failed, message: String(describing: error),
                                      durationMs: elapsedMs(since: stepStart), artifacts: artifacts))
             }
+            // A dead app is the one failure the steps themselves cannot name: without this check a crash reads as
+            // "element not found" on whatever step comes next. Nothing after it can run, so the rest is skipped.
+            // `wait(for:)` rather than reading `state`: the state only catches up once the run loop turns.
+            if step.actionName != "terminate", app.wait(for: .notRunning, timeout: 0.1) {
+                hasFailed = true
+                crashedAtStep = index
+                reports[reports.count - 1].status = .failed
+                reports[reports.count - 1].message = "The app stopped running during this step (crash or kill)."
+                    + (reports[reports.count - 1].message.map { " \($0)" } ?? "")
+            }
+            // XCUITest aborts the whole test when it loses the app in the middle of a query, so the final report
+            // may never be written. Leave what is known so far on disk; the host closes it (`closingAbortedRun`).
+            let partial = RunReport(planName: plan.name, platform: plan.platform, bundleIdentifier: plan.bundleIdentifier,
+                                    startedAt: startedAt, finishedAt: Date(), steps: reports, trees: [:],
+                                    higAudits: higAudits, passed: false, crashedAtStep: crashedAtStep)
+            if let data = try? partial.encoded() { _ = write(data, named: "report.partial.json") }
         }
 
         return RunReport(planName: plan.name,
@@ -69,7 +86,8 @@ final class PlanInterpreter {
                          steps: reports,
                          trees: trees,
                          higAudits: higAudits,
-                         passed: !hasFailed)
+                         passed: !hasFailed,
+                         crashedAtStep: crashedAtStep)
     }
 
     // MARK: Step dispatch

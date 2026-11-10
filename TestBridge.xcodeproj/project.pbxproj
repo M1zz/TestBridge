@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0000EE56F15278702ACCB252 /* CrashReportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDF6E1F7B2C64A8D9A8CAA4 /* CrashReportTests.swift */; };
 		047854E038E7A31089EA644D /* HIGAudit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FA4F9A88DEA3F30B46B146 /* HIGAudit.swift */; };
 		048930538B1F54D3326714CA /* TestBridgeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFD664881DDE90E0D608789 /* TestBridgeApp.swift */; };
 		0DA36CC3E22006C5838F72C7 /* XcodebuildService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CBF52C8D66FF4B499ECE0 /* XcodebuildService.swift */; };
@@ -39,6 +40,7 @@
 		995D95409F18E1F643BBDC9C /* HIGReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544B60B19647C3BCC906BC98 /* HIGReview.swift */; };
 		9D660C489FCBEF0BE263B5D6 /* RunReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A118059D4F03793B975117A3 /* RunReport.swift */; };
 		AD6B0C785432027BDE593092 /* RunProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B72242E21D9E71B71947F /* RunProgress.swift */; };
+		ADE49E8572C8351D8075E7A8 /* CrashLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471B9861D9E816579A9BFD53 /* CrashLogs.swift */; };
 		B1CFD4249A149357A0FC0A7E /* CLI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FCD5CB4832B8E7951841FA /* CLI.swift */; };
 		B853D5FDBEBF2DE2ADE52220 /* HIGAudit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FA4F9A88DEA3F30B46B146 /* HIGAudit.swift */; };
 		C0515C8469DE4B6F47688EC6 /* RunReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A118059D4F03793B975117A3 /* RunReport.swift */; };
@@ -57,8 +59,10 @@
 		E45350E01076C640E4B46F87 /* RunReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A118059D4F03793B975117A3 /* RunReport.swift */; };
 		EAB88567E248993AE12CCCBD /* RunConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B562C70CAF82EEE689091 /* RunConsoleView.swift */; };
 		EBB07C29D53A692C4F7BC293 /* HIGAuditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF15B12BC7E6B072EE14E9C /* HIGAuditor.swift */; };
+		EBCC45B1456AE68F061EF6BC /* CrashLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471B9861D9E816579A9BFD53 /* CrashLogs.swift */; };
 		EBD49F1E5E24485A25FD2485 /* ShellRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4853CD318DA08138951AAB4D /* ShellRunner.swift */; };
 		EC7B6D034279A5C04F782F90 /* SimctlService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397D352B5061AB8CF9664119 /* SimctlService.swift */; };
+		F086B66DDD68373DFEDF3B2D /* CrashLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471B9861D9E816579A9BFD53 /* CrashLogs.swift */; };
 		F16C9AAFE40A2924A6A087BC /* TestPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC251CEC8BFCB076BA76B708 /* TestPlan.swift */; };
 		F1DE6EB8FC177FE351340874 /* HIGAuditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF15B12BC7E6B072EE14E9C /* HIGAuditor.swift */; };
 		F597DD7AE33A40F2128CA33A /* ClaudeAssistantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594196232EF1E9C650F9C94D /* ClaudeAssistantView.swift */; };
@@ -78,6 +82,7 @@
 		397D352B5061AB8CF9664119 /* SimctlService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimctlService.swift; sourceTree = "<group>"; };
 		3CF15B12BC7E6B072EE14E9C /* HIGAuditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HIGAuditor.swift; sourceTree = "<group>"; };
 		40CAE01673F6C5BFBCE571E2 /* PlanRequestGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanRequestGuideView.swift; sourceTree = "<group>"; };
+		471B9861D9E816579A9BFD53 /* CrashLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashLogs.swift; sourceTree = "<group>"; };
 		4853CD318DA08138951AAB4D /* ShellRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellRunner.swift; sourceTree = "<group>"; };
 		53FA4F9A88DEA3F30B46B146 /* HIGAudit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HIGAudit.swift; sourceTree = "<group>"; };
 		544B60B19647C3BCC906BC98 /* HIGReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HIGReview.swift; sourceTree = "<group>"; };
@@ -97,6 +102,7 @@
 		C11DEE47C800C621C39929B8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C3CBED837A9FABFF76A60878 /* TestBridge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestBridge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C56334467EC487617930AFAD /* PlanEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanEditorView.swift; sourceTree = "<group>"; };
+		CBDF6E1F7B2C64A8D9A8CAA4 /* CrashReportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashReportTests.swift; sourceTree = "<group>"; };
 		D0CA771DFAE1D68907FF7013 /* testbridge */ = {isa = PBXFileReference; includeInIndex = 0; path = testbridge; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1486016853B75B2B5E48078 /* PlanSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanSchema.swift; sourceTree = "<group>"; };
 		EC251CEC8BFCB076BA76B708 /* TestPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPlan.swift; sourceTree = "<group>"; };
@@ -144,6 +150,7 @@
 		2FBC4CA87E4AFAE4514820B5 /* TestBridgeCoreTests */ = {
 			isa = PBXGroup;
 			children = (
+				CBDF6E1F7B2C64A8D9A8CAA4 /* CrashReportTests.swift */,
 				0177EEBD15C99EBFF8E79D5D /* HIGAuditorTests.swift */,
 				1CB2AB21D3BF07CD2D8B2B5B /* RunProgressTests.swift */,
 			);
@@ -219,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				879F611DE2A3BE36839FD7FB /* AppPreset.swift */,
+				471B9861D9E816579A9BFD53 /* CrashLogs.swift */,
 				345B72242E21D9E71B71947F /* RunProgress.swift */,
 				4853CD318DA08138951AAB4D /* ShellRunner.swift */,
 				397D352B5061AB8CF9664119 /* SimctlService.swift */,
@@ -354,6 +362,7 @@
 				B1CFD4249A149357A0FC0A7E /* CLI.swift in Sources */,
 				C7595DC5E15408676C0A60CF /* ClaudeCLI.swift in Sources */,
 				CCD3EFEB0C1A0F7A97423DAB /* ClaudeMDSnippet.swift in Sources */,
+				F086B66DDD68373DFEDF3B2D /* CrashLogs.swift in Sources */,
 				047854E038E7A31089EA644D /* HIGAudit.swift in Sources */,
 				EBB07C29D53A692C4F7BC293 /* HIGAuditor.swift in Sources */,
 				172EA723AAF49EA973DFAEC5 /* HIGReview.swift in Sources */,
@@ -376,6 +385,8 @@
 				6D3F1557ECBC0D62CF20E087 /* AppPreset.swift in Sources */,
 				D237DA02466321D0A12F10C7 /* ClaudeCLI.swift in Sources */,
 				5906C92087854757C18BA620 /* ClaudeMDSnippet.swift in Sources */,
+				ADE49E8572C8351D8075E7A8 /* CrashLogs.swift in Sources */,
+				0000EE56F15278702ACCB252 /* CrashReportTests.swift in Sources */,
 				843373E0EC268172FC123C41 /* HIGAudit.swift in Sources */,
 				36B104F9C4BFF1805E2B38A1 /* HIGAuditor.swift in Sources */,
 				90E51EF80B8ED1DCDA34513B /* HIGAuditorTests.swift in Sources */,
@@ -402,6 +413,7 @@
 				F597DD7AE33A40F2128CA33A /* ClaudeAssistantView.swift in Sources */,
 				328C47A992B0E29661914773 /* ClaudeCLI.swift in Sources */,
 				3BC858B4C743C2C053A72095 /* ClaudeMDSnippet.swift in Sources */,
+				EBCC45B1456AE68F061EF6BC /* CrashLogs.swift in Sources */,
 				53F8B778E3ECCD1097846481 /* DevicesView.swift in Sources */,
 				B853D5FDBEBF2DE2ADE52220 /* HIGAudit.swift in Sources */,
 				741A94E0585FE1D6CBFAF8DD /* HIGAuditView.swift in Sources */,

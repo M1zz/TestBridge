@@ -75,7 +75,8 @@ public enum XcodebuildService {
 
         let dest = destination ?? plan.destination ?? (plan.platform == .macOS ? .thisMac : Destination())
         let stamp = ISO8601DateFormatter().string(from: Date()).replacingOccurrences(of: ":", with: "-")
-        let safeName = plan.name.replacingOccurrences(of: "[^A-Za-z0-9_-]+", with: "-", options: .regularExpression)
+        // Keep letters of any script: Korean plan names used to collapse to "-" and every run folder looked alike.
+        let safeName = plan.name.replacingOccurrences(of: "[^\\p{L}\\p{N}_-]+", with: "-", options: .regularExpression)
         let outDir = outputDirectory ?? Paths.runs.appendingPathComponent("\(stamp)_\(safeName)", isDirectory: true)
         try FileManager.default.createDirectory(at: outDir, withIntermediateDirectories: true)
         let xcresult = outDir.appendingPathComponent("result.xcresult")
@@ -115,6 +116,22 @@ public enum XcodebuildService {
         var report = try? RunReport.decode(Data(contentsOf: outDir.appendingPathComponent("report.json")))
         if report == nil {
             report = await XCResultParser.extractReport(from: xcresult, into: outDir)
+        }
+
+        if report == nil, result.combinedOutput.contains("TESTBRIDGE-STEP ") {
+            // The plan started but the Runner never wrote its report: rebuild it from the partial one.
+            let partial = (try? RunReport.decode(Data(contentsOf: outDir.appendingPathComponent("report.partial.json"))))
+                ?? RunReport(planName: plan.name, platform: plan.platform, bundleIdentifier: plan.bundleIdentifier,
+                             startedAt: Date(), finishedAt: Date(), steps: [], trees: [:], passed: false)
+            let closed = partial.closingAbortedRun(
+                plan: plan, lostApp: result.combinedOutput.contains("Lost connection to the application"))
+            report = closed
+            try? closed.encoded().write(to: outDir.appendingPathComponent("report.json"))
+        }
+        try? FileManager.default.removeItem(at: outDir.appendingPathComponent("report.partial.json"))
+
+        if report?.crashed == true {
+            CrashLogs.collect(bundleIdentifier: plan.bundleIdentifier, since: report?.startedAt ?? Date(), into: outDir)
         }
 
         let tail = result.combinedOutput.split(separator: "\n").suffix(40).joined(separator: "\n")

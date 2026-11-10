@@ -144,7 +144,7 @@ struct TestBridgeCLI {
         if o.json {
             printJSON(outcome)
         } else {
-            print("Plan: \(outcome.planName)  →  \(outcome.passed ? "PASSED" : "FAILED") (xcodebuild exit \(outcome.exitCode))")
+            print("Plan: \(outcome.planName)  →  \(outcome.report?.crashed == true ? "CRASHED" : outcome.passed ? "PASSED" : "FAILED") (xcodebuild exit \(outcome.exitCode))")
             if let report = outcome.report {
                 for s in report.steps {
                     let mark = s.status == .passed ? "✓" : (s.status == .failed ? "✗" : "–")
