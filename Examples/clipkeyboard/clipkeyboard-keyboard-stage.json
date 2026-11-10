@@ -1,5 +1,5 @@
 {
-  "name": "clipkeyboard-keyboard-stage",
+  "name": "클립키보드 · 키보드 미리보기에서 단축어 넣기",
   "platform": "ios",
   "bundleIdentifier": "com.Ysoup.TokenMemo",
   "launchArguments": [

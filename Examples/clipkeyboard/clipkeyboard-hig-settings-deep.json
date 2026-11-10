@@ -1,5 +1,5 @@
 {
-  "name": "clipkeyboard-hig-settings-deep",
+  "name": "클립키보드 · 설정 하위 화면 HIG 검사",
   "platform": "ios",
   "bundleIdentifier": "com.Ysoup.TokenMemo",
   "launchArguments": [

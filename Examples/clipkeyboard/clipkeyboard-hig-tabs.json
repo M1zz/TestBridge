@@ -1,5 +1,5 @@
 {
-  "name": "clipkeyboard-hig-tabs",
+  "name": "클립키보드 · 탭 네 개 HIG 검사",
   "platform": "ios",
   "bundleIdentifier": "com.Ysoup.TokenMemo",
   "launchArguments": [

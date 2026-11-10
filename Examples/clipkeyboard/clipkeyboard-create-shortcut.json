@@ -1,5 +1,5 @@
 {
-  "name": "clipkeyboard-create-shortcut",
+  "name": "클립키보드 · 단축어 만들기",
   "platform": "ios",
   "bundleIdentifier": "com.Ysoup.TokenMemo",
   "launchArguments": [
