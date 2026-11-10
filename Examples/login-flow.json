@@ -1,0 +1,14 @@
+{
+  "name": "Login happy path",
+  "platform": "ios",
+  "bundleIdentifier": "com.example.MyApp",
+  "launchArguments": ["-uiTesting"],
+  "steps": [
+    { "action": "assertExists", "target": { "id": "login.email" } },
+    { "action": "typeText", "target": { "id": "login.email" }, "text": "qa@example.com" },
+    { "action": "typeText", "target": { "id": "login.password" }, "text": "hunter2" },
+    { "action": "tap", "target": { "type": "button", "label": "Sign In" } },
+    { "action": "assertExists", "target": { "labelContains": "Welcome" }, "timeout": 10 },
+    { "action": "screenshot", "name": "home" }
+  ]
+}

@@ -1,0 +1,151 @@
+{
+  "name": "clipkeyboard-create-shortcut",
+  "platform": "ios",
+  "bundleIdentifier": "com.Ysoup.TokenMemo",
+  "destination": {
+    "udid": "B3935680-1425-42BD-9898-95AFD9325244"
+  },
+  "launchArguments": [
+    "-AppleLanguages",
+    "(ko)",
+    "-AppleLocale",
+    "ko_KR",
+    "-startedFresh.v444",
+    "NO",
+    "-firstShortcut.done.v1",
+    "YES",
+    "-tutorialChaptersDone.v1",
+    "YES",
+    "-keyboardStageOffered.v1",
+    "YES",
+    "-didYouKnow.optOut.v1",
+    "YES",
+    "-ghostSuggestionsOff_v1",
+    "YES",
+    "-defaultSamplesInserted_v1",
+    "YES",
+    "-demoSampleOfferResolved_v1",
+    "YES",
+    "-feedbackNudgeOptOutDate",
+    "1762700000",
+    "-snippetsTabStyle.v1",
+    "list"
+  ],
+  "stopOnFailure": false,
+  "steps": [
+    {
+      "action": "wait",
+      "seconds": 3
+    },
+    {
+      "action": "tap",
+      "target": {
+        "type": "staticText",
+        "label": "기본"
+      }
+    },
+    {
+      "action": "wait",
+      "seconds": 1
+    },
+    {
+      "action": "tap",
+      "target": {
+        "type": "button",
+        "label": "단축어 추가"
+      }
+    },
+    {
+      "action": "wait",
+      "seconds": 1
+    },
+    {
+      "action": "tap",
+      "target": {
+        "type": "button",
+        "label": "새 단축어 만들기"
+      }
+    },
+    {
+      "action": "assertExists",
+      "target": {
+        "type": "textField",
+        "label": "키보드에 표시할 이름"
+      },
+      "timeout": 10
+    },
+    {
+      "action": "screenshot",
+      "name": "new-shortcut-empty"
+    },
+    {
+      "action": "higAudit",
+      "name": "new-shortcut-empty",
+      "failOn": "error"
+    },
+    {
+      "action": "typeText",
+      "target": {
+        "type": "textField",
+        "label": "키보드에 표시할 이름"
+      },
+      "text": "TestBridge 인사"
+    },
+    {
+      "action": "typeText",
+      "target": {
+        "type": "textView",
+        "label": "붙여넣을 내용"
+      },
+      "text": "안녕하세요, 반갑습니다"
+    },
+    {
+      "action": "screenshot",
+      "name": "new-shortcut-filled"
+    },
+    {
+      "action": "assertEnabled",
+      "target": {
+        "type": "button",
+        "label": "저장"
+      },
+      "enabled": true
+    },
+    {
+      "action": "tap",
+      "target": {
+        "type": "button",
+        "label": "저장"
+      }
+    },
+    {
+      "action": "assertExists",
+      "target": {
+        "type": "button",
+        "label": "TestBridge 인사"
+      },
+      "timeout": 10
+    },
+    {
+      "action": "assertNotExists",
+      "target": {
+        "type": "textField",
+        "label": "키보드에 표시할 이름"
+      },
+      "timeout": 5
+    },
+    {
+      "action": "wait",
+      "seconds": 1
+    },
+    {
+      "action": "screenshot",
+      "name": "home-with-shortcut"
+    },
+    {
+      "action": "higAudit",
+      "name": "home-with-shortcut",
+      "failOn": "error"
+    }
+  ]
+}

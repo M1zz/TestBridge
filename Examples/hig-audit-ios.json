@@ -1,0 +1,16 @@
+{
+  "name": "HIG audit: home and settings",
+  "platform": "ios",
+  "bundleIdentifier": "com.example.MyApp",
+  "launchArguments": ["-uiTesting"],
+  "stopOnFailure": false,
+  "steps": [
+    { "action": "wait", "seconds": 1 },
+    { "action": "screenshot", "name": "home" },
+    { "action": "higAudit", "name": "home", "failOn": "error" },
+    { "action": "tap", "target": { "type": "button", "label": "Settings" } },
+    { "action": "assertExists", "target": { "type": "navigationBar", "label": "Settings" } },
+    { "action": "screenshot", "name": "settings" },
+    { "action": "higAudit", "name": "settings", "failOn": "error" }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "watchOS smoke",
+  "platform": "watchos",
+  "bundleIdentifier": "com.example.MyApp.watchkitapp",
+  "steps": [
+    { "action": "wait", "seconds": 2 },
+    { "action": "assertExists", "target": { "type": "button", "labelContains": "Start" }, "timeout": 10 },
+    { "action": "tap", "target": { "type": "button", "labelContains": "Start" } },
+    { "action": "assertExists", "target": { "labelContains": "00:0" }, "timeout": 5 },
+    { "action": "screenshot", "name": "running" }
+  ]
+}

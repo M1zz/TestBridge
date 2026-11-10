@@ -1,0 +1,80 @@
+# TestBridge — macOS app + CLI + Core unit tests. Generate with: xcodegen generate   (brew install xcodegen)
+name: TestBridge
+options:
+  bundleIdPrefix: com.leeo.testbridge
+  deploymentTarget:
+    macOS: "14.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+    CODE_SIGN_STYLE: Automatic
+    SWIFT_STRICT_CONCURRENCY: minimal
+
+targets:
+  TestBridge:
+    type: application
+    platform: macOS
+    sources:
+      - Sources/TestBridgeApp
+      - Sources/TestBridgeCore
+    info:
+      path: Sources/TestBridgeApp/Info.plist
+      properties:
+        CFBundleDisplayName: TestBridge
+        LSApplicationCategoryType: public.app-category.developer-tools
+        NSHumanReadableCopyright: ""
+    settings:
+      base:
+        PRODUCT_NAME: TestBridge
+        # Must stay off: the app launches xcodebuild/xcrun/claude and reads ~/Library.
+        ENABLE_APP_SANDBOX: NO
+        ENABLE_HARDENED_RUNTIME: YES
+        ENABLE_USER_SCRIPT_SANDBOXING: NO
+        # String Catalog (Sources/TestBridgeApp/Resources/Localizable.xcstrings): en source, ko translations.
+        SWIFT_EMIT_LOC_STRINGS: YES
+
+  testbridge:
+    type: tool
+    platform: macOS
+    sources:
+      - Sources/testbridge-cli
+      - Sources/TestBridgeCore
+    settings:
+      base:
+        PRODUCT_NAME: testbridge
+        ENABLE_USER_SCRIPT_SANDBOXING: NO
+
+  # Pure unit tests for the shared core (HIG rule engine, plan DSL, Claude reply parsing). No host app.
+  TestBridgeCoreTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - Tests/TestBridgeCoreTests
+      - Sources/TestBridgeCore
+    settings:
+      base:
+        ENABLE_USER_SCRIPT_SANDBOXING: NO
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: com.leeo.testbridge.TestBridgeCoreTests
+
+schemes:
+  TestBridge:
+    build:
+      targets:
+        TestBridge: all
+    run:
+      config: Debug
+  testbridge:
+    build:
+      targets:
+        testbridge: all
+    run:
+      config: Debug
+  TestBridgeCoreTests:
+    build:
+      targets:
+        TestBridgeCoreTests: [test]
+    test:
+      targets: [TestBridgeCoreTests]

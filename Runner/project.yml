@@ -1,0 +1,112 @@
+# Generate with: xcodegen generate   (brew install xcodegen)
+name: TestBridgeRunner
+options:
+  bundleIdPrefix: com.leeo.testbridge.runner
+  deploymentTarget:
+    iOS: "17.0"
+    macOS: "14.0"
+    watchOS: "10.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    CODE_SIGN_STYLE: Automatic
+    # Set your team here if you want to run on physical devices.
+    # DEVELOPMENT_TEAM: XXXXXXXXXX
+
+targets:
+  # ---------- iOS / iPadOS ----------
+  RunnerHost-iOS:
+    type: application
+    platform: iOS
+    sources: [Hosts/iOS]
+    info:
+      path: Hosts/iOS/Info.plist
+      properties:
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
+    settings:
+      base:
+        TARGETED_DEVICE_FAMILY: "1,2"
+
+  Runner-iOS:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - Shared
+      - path: ../Sources/TestBridgeCore/Models
+    dependencies:
+      - target: RunnerHost-iOS
+    settings:
+      base:
+        TEST_TARGET_NAME: RunnerHost-iOS
+
+  # ---------- macOS ----------
+  RunnerHost-macOS:
+    type: application
+    platform: macOS
+    sources: [Hosts/macOS]
+    info:
+      path: Hosts/macOS/Info.plist
+      properties: {}
+    settings:
+      base:
+        ENABLE_APP_SANDBOX: NO
+
+  Runner-macOS:
+    type: bundle.ui-testing
+    platform: macOS
+    sources:
+      - Shared
+      - path: ../Sources/TestBridgeCore/Models
+    dependencies:
+      - target: RunnerHost-macOS
+    settings:
+      base:
+        TEST_TARGET_NAME: RunnerHost-macOS
+
+  # ---------- watchOS ----------
+  RunnerHost-watchOS:
+    type: application
+    platform: watchOS
+    sources: [Hosts/watchOS]
+    info:
+      path: Hosts/watchOS/Info.plist
+      properties:
+        WKApplication: true
+        WKWatchOnly: true
+
+  Runner-watchOS:
+    type: bundle.ui-testing
+    platform: watchOS
+    sources:
+      - Shared
+      - path: ../Sources/TestBridgeCore/Models
+    dependencies:
+      - target: RunnerHost-watchOS
+    settings:
+      base:
+        TEST_TARGET_NAME: RunnerHost-watchOS
+
+schemes:
+  Runner-iOS:
+    build:
+      targets:
+        RunnerHost-iOS: all
+        Runner-iOS: [test]
+    test:
+      targets: [Runner-iOS]
+  Runner-macOS:
+    build:
+      targets:
+        RunnerHost-macOS: all
+        Runner-macOS: [test]
+    test:
+      targets: [Runner-macOS]
+  Runner-watchOS:
+    build:
+      targets:
+        RunnerHost-watchOS: all
+        Runner-watchOS: [test]
+    test:
+      targets: [Runner-watchOS]

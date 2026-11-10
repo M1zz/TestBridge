@@ -1,0 +1,7 @@
+{
+  "kind": "questions",
+  "questions": [
+    { "id": "test_account", "question": "Which test account should the login plan use?", "why": "The plan has to type real credentials.", "example": "qa@example.com / hunter2" },
+    { "id": "first_screen", "question": "Does the app open on the login screen when launched with -uiTesting, or is there onboarding first?", "why": "Determines whether the plan needs to dismiss onboarding.", "example": "login screen directly" }
+  ]
+}

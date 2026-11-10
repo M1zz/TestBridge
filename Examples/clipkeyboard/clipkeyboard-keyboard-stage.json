@@ -1,0 +1,119 @@
+{
+  "name": "clipkeyboard-keyboard-stage",
+  "platform": "ios",
+  "bundleIdentifier": "com.Ysoup.TokenMemo",
+  "destination": {
+    "udid": "B3935680-1425-42BD-9898-95AFD9325244"
+  },
+  "launchArguments": [
+    "-AppleLanguages",
+    "(ko)",
+    "-AppleLocale",
+    "ko_KR",
+    "-startedFresh.v444",
+    "NO",
+    "-firstShortcut.done.v1",
+    "YES",
+    "-tutorialChaptersDone.v1",
+    "YES",
+    "-keyboardStageOffered.v1",
+    "YES",
+    "-didYouKnow.optOut.v1",
+    "YES",
+    "-ghostSuggestionsOff_v1",
+    "YES",
+    "-defaultSamplesInserted_v1",
+    "YES",
+    "-demoSampleOfferResolved_v1",
+    "YES",
+    "-feedbackNudgeOptOutDate",
+    "1762700000",
+    "-snippetsTabStyle.v1",
+    "keyboard"
+  ],
+  "stopOnFailure": false,
+  "steps": [
+    {
+      "action": "wait",
+      "seconds": 3
+    },
+    {
+      "action": "tap",
+      "target": {
+        "type": "staticText",
+        "label": "기본"
+      }
+    },
+    {
+      "action": "wait",
+      "seconds": 1
+    },
+    {
+      "action": "wait",
+      "seconds": 2
+    },
+    {
+      "action": "assertExists",
+      "target": {
+        "type": "staticText",
+        "label": "키보드 미리보기"
+      },
+      "timeout": 10
+    },
+    {
+      "action": "wait",
+      "seconds": 1
+    },
+    {
+      "action": "screenshot",
+      "name": "keyboard-stage"
+    },
+    {
+      "action": "higAudit",
+      "name": "keyboard-stage",
+      "failOn": "error"
+    },
+    {
+      "action": "tap",
+      "target": {
+        "type": "button",
+        "label": "TestBridge 인사, 안녕하세요, 반갑습니다"
+      }
+    },
+    {
+      "action": "wait",
+      "seconds": 1
+    },
+    {
+      "action": "assertText",
+      "target": {
+        "label": "입력창"
+      },
+      "contains": "안녕하세요"
+    },
+    {
+      "action": "screenshot",
+      "name": "shortcut-inserted"
+    },
+    {
+      "action": "tap",
+      "target": {
+        "type": "button",
+        "id": "number"
+      }
+    },
+    {
+      "action": "wait",
+      "seconds": 1
+    },
+    {
+      "action": "screenshot",
+      "name": "number-pane"
+    },
+    {
+      "action": "higAudit",
+      "name": "number-pane",
+      "failOn": "error"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "macOS: new document via menu",
+  "platform": "macos",
+  "bundleIdentifier": "com.example.MyMacApp",
+  "steps": [
+    { "action": "pressKey", "key": "n", "modifiers": ["cmd"] },
+    { "action": "assertExists", "target": { "type": "window", "labelContains": "Untitled" }, "timeout": 5 },
+    { "action": "tap", "target": { "type": "menuBarItem", "label": "File" } },
+    { "action": "assertExists", "target": { "type": "menuItem", "label": "Save…" } },
+    { "action": "pressKey", "key": "escape" },
+    { "action": "dumpTree", "name": "after-new-doc" }
+  ]
+}

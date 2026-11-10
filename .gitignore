@@ -1,0 +1,7 @@
+# Generated Xcode projects are checked in; regenerate with `xcodegen generate` after editing project.yml.
+*.xcworkspace/xcuserdata/
+xcuserdata/
+.build/
+DerivedData/
+DerivedData-*/
+.DS_Store

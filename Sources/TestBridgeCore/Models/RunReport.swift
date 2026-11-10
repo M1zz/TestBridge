@@ -1,0 +1,100 @@
+import Foundation
+
+/// Produced by the Runner (inside XCUITest) and consumed by the app / CLI.
+public struct RunReport: Codable, Hashable, Sendable {
+    public enum Status: String, Codable, Sendable {
+        case passed, failed, skipped
+    }
+
+    public struct StepReport: Codable, Hashable, Sendable, Identifiable {
+        public var index: Int
+        public var action: String
+        public var summary: String
+        public var status: Status
+        public var message: String?
+        public var durationMs: Int
+        /// File names (relative to the run's output directory) this step produced.
+        public var artifacts: [String]
+
+        public var id: Int { index }
+
+        public init(index: Int, action: String, summary: String, status: Status,
+                    message: String? = nil, durationMs: Int, artifacts: [String] = []) {
+            self.index = index
+            self.action = action
+            self.summary = summary
+            self.status = status
+            self.message = message
+            self.durationMs = durationMs
+            self.artifacts = artifacts
+        }
+    }
+
+    public var planName: String
+    public var platform: Platform
+    public var bundleIdentifier: String
+    public var startedAt: Date
+    public var finishedAt: Date
+    public var steps: [StepReport]
+    /// Accessibility tree dumps keyed by the `dumpTree` name.
+    public var trees: [String: String]
+    /// One entry per `higAudit` step, in plan order.
+    public var higAudits: [HIGAuditReport]
+    public var passed: Bool
+
+    public init(planName: String, platform: Platform, bundleIdentifier: String,
+                startedAt: Date, finishedAt: Date, steps: [StepReport],
+                trees: [String: String], higAudits: [HIGAuditReport] = [], passed: Bool) {
+        self.planName = planName
+        self.platform = platform
+        self.bundleIdentifier = bundleIdentifier
+        self.startedAt = startedAt
+        self.finishedAt = finishedAt
+        self.steps = steps
+        self.trees = trees
+        self.higAudits = higAudits
+        self.passed = passed
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case planName, platform, bundleIdentifier, startedAt, finishedAt, steps, trees, higAudits, passed
+    }
+
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        planName = try c.decode(String.self, forKey: .planName)
+        platform = try c.decode(Platform.self, forKey: .platform)
+        bundleIdentifier = try c.decode(String.self, forKey: .bundleIdentifier)
+        startedAt = try c.decode(Date.self, forKey: .startedAt)
+        finishedAt = try c.decode(Date.self, forKey: .finishedAt)
+        steps = try c.decode([StepReport].self, forKey: .steps)
+        trees = try c.decodeIfPresent([String: String].self, forKey: .trees) ?? [:]
+        higAudits = try c.decodeIfPresent([HIGAuditReport].self, forKey: .higAudits) ?? []
+        passed = try c.decode(Bool.self, forKey: .passed)
+    }
+
+    public var allHIGFindings: [HIGFinding] { higAudits.flatMap(\.findings) }
+
+    public var failureSummary: String {
+        let failures = steps.filter { $0.status == .failed }
+        var lines = failures.map { "Step \($0.index + 1) (\($0.action)): \($0.message ?? "failed")" }
+        for audit in higAudits where !audit.findings.isEmpty {
+            lines.append("HIG audit \"\(audit.name)\": \(audit.countsLine)")
+        }
+        if lines.isEmpty { return "All \(steps.count) steps passed." }
+        return lines.joined(separator: "\n")
+    }
+
+    public static func decode(_ data: Data) throws -> RunReport {
+        let dec = JSONDecoder()
+        dec.dateDecodingStrategy = .iso8601
+        return try dec.decode(RunReport.self, from: data)
+    }
+
+    public func encoded() throws -> Data {
+        let enc = JSONEncoder()
+        enc.outputFormatting = [.prettyPrinted, .sortedKeys]
+        enc.dateEncodingStrategy = .iso8601
+        return try enc.encode(self)
+    }
+}

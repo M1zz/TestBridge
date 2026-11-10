@@ -1,0 +1,132 @@
+{
+  "name": "clipkeyboard-hig-tabs",
+  "platform": "ios",
+  "bundleIdentifier": "com.Ysoup.TokenMemo",
+  "destination": {
+    "udid": "B3935680-1425-42BD-9898-95AFD9325244"
+  },
+  "launchArguments": [
+    "-AppleLanguages",
+    "(ko)",
+    "-AppleLocale",
+    "ko_KR",
+    "-startedFresh.v444",
+    "NO",
+    "-firstShortcut.done.v1",
+    "YES",
+    "-tutorialChaptersDone.v1",
+    "YES",
+    "-keyboardStageOffered.v1",
+    "YES",
+    "-didYouKnow.optOut.v1",
+    "YES",
+    "-ghostSuggestionsOff_v1",
+    "YES",
+    "-defaultSamplesInserted_v1",
+    "YES",
+    "-demoSampleOfferResolved_v1",
+    "YES",
+    "-feedbackNudgeOptOutDate",
+    "1762700000",
+    "-snippetsTabStyle.v1",
+    "list"
+  ],
+  "stopOnFailure": false,
+  "steps": [
+    {
+      "action": "wait",
+      "seconds": 3
+    },
+    {
+      "action": "tap",
+      "target": {
+        "type": "staticText",
+        "label": "기본"
+      }
+    },
+    {
+      "action": "wait",
+      "seconds": 1
+    },
+    {
+      "action": "wait",
+      "seconds": 1
+    },
+    {
+      "action": "screenshot",
+      "name": "home"
+    },
+    {
+      "action": "higAudit",
+      "name": "home",
+      "failOn": "error"
+    },
+    {
+      "action": "tap",
+      "target": {
+        "type": "button",
+        "label": "사용 기록"
+      }
+    },
+    {
+      "action": "wait",
+      "seconds": 1
+    },
+    {
+      "action": "screenshot",
+      "name": "usage"
+    },
+    {
+      "action": "higAudit",
+      "name": "usage",
+      "failOn": "error"
+    },
+    {
+      "action": "tap",
+      "target": {
+        "type": "button",
+        "label": "설정"
+      }
+    },
+    {
+      "action": "assertExists",
+      "target": {
+        "label": "화면과 표시"
+      },
+      "timeout": 5
+    },
+    {
+      "action": "wait",
+      "seconds": 1
+    },
+    {
+      "action": "screenshot",
+      "name": "settings"
+    },
+    {
+      "action": "higAudit",
+      "name": "settings",
+      "failOn": "error"
+    },
+    {
+      "action": "tap",
+      "target": {
+        "type": "button",
+        "label": "검색"
+      }
+    },
+    {
+      "action": "wait",
+      "seconds": 1
+    },
+    {
+      "action": "screenshot",
+      "name": "search"
+    },
+    {
+      "action": "higAudit",
+      "name": "search",
+      "failOn": "error"
+    }
+  ]
+}
