@@ -19,6 +19,7 @@
 		34C5A782803B2D3A83B4A5A5 /* PlanRequestGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CAE01673F6C5BFBCE571E2 /* PlanRequestGuideView.swift */; };
 		36B104F9C4BFF1805E2B38A1 /* HIGAuditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF15B12BC7E6B072EE14E9C /* HIGAuditor.swift */; };
 		3BC858B4C743C2C053A72095 /* ClaudeMDSnippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D02028C91228DE70522138 /* ClaudeMDSnippet.swift */; };
+		3C0F2A96D6E8D0BB0A13A30F /* RunProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B72242E21D9E71B71947F /* RunProgress.swift */; };
 		43180035D2D9E83EE1D42172 /* PlanSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1486016853B75B2B5E48078 /* PlanSchema.swift */; };
 		50E3C1E585616ABE39496CB0 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61686700007A6A0DA12AC419 /* AppState.swift */; };
 		533D377333915E81B7324844 /* XcodebuildService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CBF52C8D66FF4B499ECE0 /* XcodebuildService.swift */; };
@@ -34,13 +35,16 @@
 		92142CDC320E86260F8EB216 /* PlanSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1486016853B75B2B5E48078 /* PlanSchema.swift */; };
 		995D95409F18E1F643BBDC9C /* HIGReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544B60B19647C3BCC906BC98 /* HIGReview.swift */; };
 		9D660C489FCBEF0BE263B5D6 /* RunReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A118059D4F03793B975117A3 /* RunReport.swift */; };
+		AD6B0C785432027BDE593092 /* RunProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B72242E21D9E71B71947F /* RunProgress.swift */; };
 		B1CFD4249A149357A0FC0A7E /* CLI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FCD5CB4832B8E7951841FA /* CLI.swift */; };
 		B853D5FDBEBF2DE2ADE52220 /* HIGAudit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FA4F9A88DEA3F30B46B146 /* HIGAudit.swift */; };
 		C0515C8469DE4B6F47688EC6 /* RunReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A118059D4F03793B975117A3 /* RunReport.swift */; };
 		C3BE4172E40D97CC2ADB15F9 /* ShellRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4853CD318DA08138951AAB4D /* ShellRunner.swift */; };
 		C68F40DF5D95D7EEF5809B1E /* PlanInbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3236BB1423283CA59492527C /* PlanInbox.swift */; };
 		C7595DC5E15408676C0A60CF /* ClaudeCLI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A12C94E7CBDC9CEAED0EDD /* ClaudeCLI.swift */; };
+		C81EB7ED3F9825AD64C85C22 /* RunProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B72242E21D9E71B71947F /* RunProgress.swift */; };
 		CCD3EFEB0C1A0F7A97423DAB /* ClaudeMDSnippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D02028C91228DE70522138 /* ClaudeMDSnippet.swift */; };
+		CFCE2C15A2375A817380C1CB /* RunProgressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB2AB21D3BF07CD2D8B2B5B /* RunProgressTests.swift */; };
 		D237DA02466321D0A12F10C7 /* ClaudeCLI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A12C94E7CBDC9CEAED0EDD /* ClaudeCLI.swift */; };
 		D92070CF42BB7B6B63A9600C /* SimctlService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397D352B5061AB8CF9664119 /* SimctlService.swift */; };
 		DB07212A213B6832E0BC33A8 /* PlanSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1486016853B75B2B5E48078 /* PlanSchema.swift */; };
@@ -63,9 +67,11 @@
 /* Begin PBXFileReference section */
 		0177EEBD15C99EBFF8E79D5D /* HIGAuditorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HIGAuditorTests.swift; sourceTree = "<group>"; };
 		18D02028C91228DE70522138 /* ClaudeMDSnippet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeMDSnippet.swift; sourceTree = "<group>"; };
+		1CB2AB21D3BF07CD2D8B2B5B /* RunProgressTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunProgressTests.swift; sourceTree = "<group>"; };
 		223483BACB3DF736136249EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		31FCD5CB4832B8E7951841FA /* CLI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLI.swift; sourceTree = "<group>"; };
 		3236BB1423283CA59492527C /* PlanInbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanInbox.swift; sourceTree = "<group>"; };
+		345B72242E21D9E71B71947F /* RunProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunProgress.swift; sourceTree = "<group>"; };
 		397D352B5061AB8CF9664119 /* SimctlService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimctlService.swift; sourceTree = "<group>"; };
 		3CF15B12BC7E6B072EE14E9C /* HIGAuditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HIGAuditor.swift; sourceTree = "<group>"; };
 		40CAE01673F6C5BFBCE571E2 /* PlanRequestGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanRequestGuideView.swift; sourceTree = "<group>"; };
@@ -135,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				0177EEBD15C99EBFF8E79D5D /* HIGAuditorTests.swift */,
+				1CB2AB21D3BF07CD2D8B2B5B /* RunProgressTests.swift */,
 			);
 			path = TestBridgeCoreTests;
 			sourceTree = "<group>";
@@ -207,6 +214,7 @@
 		D0ACA5E78103D1D6549609E2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				345B72242E21D9E71B71947F /* RunProgress.swift */,
 				4853CD318DA08138951AAB4D /* ShellRunner.swift */,
 				397D352B5061AB8CF9664119 /* SimctlService.swift */,
 				745CBF52C8D66FF4B499ECE0 /* XcodebuildService.swift */,
@@ -346,6 +354,7 @@
 				621625AF0427F9BEE4DCCB58 /* PlanInbox.swift in Sources */,
 				92142CDC320E86260F8EB216 /* PlanSchema.swift in Sources */,
 				14F2A264483A8E61C8B92C1E /* PromptBuilder.swift in Sources */,
+				AD6B0C785432027BDE593092 /* RunProgress.swift in Sources */,
 				E45350E01076C640E4B46F87 /* RunReport.swift in Sources */,
 				C3BE4172E40D97CC2ADB15F9 /* ShellRunner.swift in Sources */,
 				EC7B6D034279A5C04F782F90 /* SimctlService.swift in Sources */,
@@ -367,6 +376,8 @@
 				C68F40DF5D95D7EEF5809B1E /* PlanInbox.swift in Sources */,
 				DB07212A213B6832E0BC33A8 /* PlanSchema.swift in Sources */,
 				2A9354EC3036EFD9A3780E0E /* PromptBuilder.swift in Sources */,
+				3C0F2A96D6E8D0BB0A13A30F /* RunProgress.swift in Sources */,
+				CFCE2C15A2375A817380C1CB /* RunProgressTests.swift in Sources */,
 				9D660C489FCBEF0BE263B5D6 /* RunReport.swift in Sources */,
 				EBD49F1E5E24485A25FD2485 /* ShellRunner.swift in Sources */,
 				DFB1FECFECC55B4D4FE7E95D /* SimctlService.swift in Sources */,
@@ -394,6 +405,7 @@
 				43180035D2D9E83EE1D42172 /* PlanSchema.swift in Sources */,
 				55EDE893597BDD325BC150F6 /* PromptBuilder.swift in Sources */,
 				EAB88567E248993AE12CCCBD /* RunConsoleView.swift in Sources */,
+				C81EB7ED3F9825AD64C85C22 /* RunProgress.swift in Sources */,
 				C0515C8469DE4B6F47688EC6 /* RunReport.swift in Sources */,
 				26DF50B980E69A0589A6DBA9 /* SettingsView.swift in Sources */,
 				54D191520F7171FE18DADC4B /* ShellRunner.swift in Sources */,

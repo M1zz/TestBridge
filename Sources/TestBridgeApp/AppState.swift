@@ -85,6 +85,9 @@ final class AppState {
     var runs: [RunRecord] = []
     var isRunning = false
     var liveLog: String = ""
+    /// What the progress bar at the bottom of the window says is running (plan name, snapshot, audit).
+    var runTitle: String = ""
+    var runProgress: RunProgress? = nil
     var selectedRunID: UUID? = nil
 
     // Snapshot
@@ -238,16 +241,28 @@ final class AppState {
         }
     }
 
+    private func beginLog(title: String) {
+        liveLog = ""
+        runTitle = title
+        runProgress = nil
+    }
+
+    private func appendLog(_ chunk: String) {
+        liveLog.append(chunk)
+        // Only the tail can hold a newer step line; scanning the whole log on every chunk would be quadratic.
+        if let latest = RunProgress.latest(in: liveLog.suffix(4000)) { runProgress = latest }
+    }
+
     func run(plan: TestPlan) async {
         guard !isRunning else { return }
         isRunning = true
-        liveLog = ""
+        beginLog(title: plan.name)
         defer { isRunning = false }
         let destination = plan.destination ?? selectedDevice?.destination
         let runner = runnerProjectURL
         do {
             let outcome = try await XcodebuildService.run(plan: plan, destination: destination, runnerProject: runner) { [weak self] chunk in
-                Task { @MainActor in self?.liveLog.append(chunk) }
+                Task { @MainActor in self?.appendLog(chunk) }
             }
             let record = RunRecord(startedAt: Date(), outcome: outcome)
             runs.insert(record, at: 0)
@@ -260,13 +275,13 @@ final class AppState {
     func captureSnapshot() async {
         guard !bundleIdentifier.isEmpty else { errorMessage = "Enter the target app's bundle identifier first."; return }
         isCapturingSnapshot = true
-        liveLog = ""
+        beginLog(title: String(localized: "Accessibility snapshot"))
         defer { isCapturingSnapshot = false }
         do {
             let (tree, outcome) = try await XcodebuildService.captureSnapshot(
                 platform: platform, bundleIdentifier: bundleIdentifier,
                 destination: selectedDevice?.destination, runnerProject: runnerProjectURL) { [weak self] chunk in
-                    Task { @MainActor in self?.liveLog.append(chunk) }
+                    Task { @MainActor in self?.appendLog(chunk) }
                 }
             accessibilityTree = tree
             runs.insert(RunRecord(startedAt: Date(), outcome: outcome), at: 0)
@@ -283,13 +298,13 @@ final class AppState {
         guard !isRunning, !isAuditing else { return }
         isAuditing = true
         isRunning = true
-        liveLog = ""
+        beginLog(title: String(localized: "First screen HIG audit"))
         defer { isAuditing = false; isRunning = false }
         do {
             let (audit, tree, outcome) = try await XcodebuildService.auditFirstScreen(
                 platform: platform, bundleIdentifier: bundleIdentifier,
                 destination: selectedDevice?.destination, runnerProject: runnerProjectURL) { [weak self] chunk in
-                    Task { @MainActor in self?.liveLog.append(chunk) }
+                    Task { @MainActor in self?.appendLog(chunk) }
                 }
             if let tree { accessibilityTree = tree }
             let record = RunRecord(startedAt: Date(), outcome: outcome)

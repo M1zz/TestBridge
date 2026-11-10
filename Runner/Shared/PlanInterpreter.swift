@@ -40,6 +40,9 @@ final class PlanInterpreter {
                                      status: .skipped, message: "Skipped after earlier failure", durationMs: 0))
                 continue
             }
+            // The app reads this line from the xcodebuild log to show which step is running (`RunProgress`).
+            print("TESTBRIDGE-STEP \(index + 1)/\(plan.steps.count) \(step.summary)")
+            fflush(stdout)
             let stepStart = Date()
             var artifacts: [String] = []
             do {

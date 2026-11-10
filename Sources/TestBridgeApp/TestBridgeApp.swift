@@ -92,6 +92,9 @@ struct ContentView: View {
                 }
                 .frame(width: geo.size.width, height: geo.size.height)
             }
+            .safeAreaInset(edge: .bottom, spacing: 0) {
+                if state.isRunning || state.isCapturingSnapshot { RunProgressBar() }
+            }
         }
         .alert("Something went wrong", isPresented: Binding(
             get: { state.errorMessage != nil },
@@ -157,5 +160,35 @@ struct TargetSummary: View {
     /// Long simulator names ("iPhone 17 Pro Max (18.2)") would otherwise widen the whole sidebar.
     private func shortName(_ name: String) -> String {
         name.count > 22 ? String(name.prefix(21)) + "…" : name
+    }
+}
+
+/// Shown under every section while xcodebuild is working, so it is always clear what is running and how far it is.
+struct RunProgressBar: View {
+    @Environment(AppState.self) private var state
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            HStack(spacing: 8) {
+                Text(state.runTitle).fontWeight(.semibold).lineLimit(1)
+                if let p = state.runProgress {
+                    Text(verbatim: "\(p.step)/\(p.total)").monospacedDigit().foregroundStyle(.secondary)
+                    Text(verbatim: p.summary).foregroundStyle(.secondary).lineLimit(1).truncationMode(.middle)
+                } else {
+                    Text("Building the runner and launching the app…").foregroundStyle(.secondary).lineLimit(1)
+                }
+                Spacer(minLength: 0)
+            }
+            if let p = state.runProgress {
+                ProgressView(value: p.fraction)
+            } else {
+                ProgressView().progressViewStyle(.linear)
+            }
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 10)
+        .background(.bar)
+        .overlay(alignment: .top) { Divider() }
+        .accessibilityElement(children: .combine)
     }
 }
