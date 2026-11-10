@@ -158,6 +158,7 @@ final class AppState {
         startInbox()
         Task { await refreshDevices() }
         reloadPlans()
+        showPlans(forBundle: bundleIdentifier)   // the list opens on the target app, so the editor must too
         runs = RunOutcome.loadPast().map { RunRecord(startedAt: $0.report?.startedAt ?? Date(), outcome: $0) }
     }
 
