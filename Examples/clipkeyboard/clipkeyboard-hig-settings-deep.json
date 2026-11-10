@@ -2,9 +2,6 @@
   "name": "clipkeyboard-hig-settings-deep",
   "platform": "ios",
   "bundleIdentifier": "com.Ysoup.TokenMemo",
-  "destination": {
-    "udid": "B3935680-1425-42BD-9898-95AFD9325244"
-  },
   "launchArguments": [
     "-AppleLanguages",
     "(ko)",
@@ -29,20 +26,19 @@
     "-feedbackNudgeOptOutDate",
     "1762700000",
     "-snippetsTabStyle.v1",
-    "list"
+    "list",
+    "-blankStart.v1",
+    "NO",
+    "-blankStart.finished.v1",
+    "YES",
+    "-userState.showsAllFeatures.v1",
+    "YES"
   ],
   "stopOnFailure": false,
   "steps": [
     {
       "action": "wait",
       "seconds": 3
-    },
-    {
-      "action": "tap",
-      "target": {
-        "type": "staticText",
-        "label": "기본"
-      }
     },
     {
       "action": "wait",
@@ -89,8 +85,7 @@
     {
       "action": "tap",
       "target": {
-        "type": "button",
-        "label": "설정"
+        "id": "BackButton"
       }
     },
     {
@@ -127,8 +122,7 @@
     {
       "action": "tap",
       "target": {
-        "type": "button",
-        "label": "설정"
+        "id": "BackButton"
       }
     },
     {
@@ -165,8 +159,7 @@
     {
       "action": "tap",
       "target": {
-        "type": "button",
-        "label": "설정"
+        "id": "BackButton"
       }
     },
     {
@@ -176,7 +169,7 @@
     {
       "action": "scrollTo",
       "target": {
-        "label": "앱 정보"
+        "label": "내 데이터"
       },
       "direction": "up",
       "maxSwipes": 6
@@ -184,7 +177,7 @@
     {
       "action": "tap",
       "target": {
-        "label": "앱 정보"
+        "label": "내 데이터"
       }
     },
     {
@@ -193,18 +186,17 @@
     },
     {
       "action": "screenshot",
-      "name": "settings-app-info"
+      "name": "settings-my-data"
     },
     {
       "action": "higAudit",
-      "name": "settings-app-info",
+      "name": "settings-my-data",
       "failOn": "error"
     },
     {
       "action": "tap",
       "target": {
-        "type": "button",
-        "label": "설정"
+        "id": "BackButton"
       }
     },
     {
@@ -214,20 +206,42 @@
     {
       "action": "scrollTo",
       "target": {
-        "labelContains": "Pro 업그레이드"
+        "type": "staticText",
+        "label": "무료로 쓰는 중"
       },
-      "direction": "up",
+      "direction": "down",
       "maxSwipes": 6
     },
     {
       "action": "tap",
       "target": {
-        "labelContains": "Pro 업그레이드"
+        "type": "staticText",
+        "label": "무료로 쓰는 중"
       }
     },
     {
       "action": "wait",
       "seconds": 1
+    },
+    {
+      "action": "screenshot",
+      "name": "free-plan"
+    },
+    {
+      "action": "higAudit",
+      "name": "free-plan",
+      "failOn": "error"
+    },
+    {
+      "action": "tap",
+      "target": {
+        "type": "button",
+        "labelContains": "Pro 보기"
+      }
+    },
+    {
+      "action": "wait",
+      "seconds": 2
     },
     {
       "action": "screenshot",

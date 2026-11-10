@@ -24,6 +24,11 @@
 - [x] Runner가 플랜 실패를 XCTFail로 올리지 않게 변경 (실패 시 xcodebuild가 시뮬레이터 진단 수집에 600초 멈춤, Xcode 27) — 합격/불합격은 report.json으로
 - [x] 클립키보드 시나리오 4개 (`Examples/clipkeyboard/`, 앱 플랜 탭에 import): 탭 4개 HIG · 단축어 만들기 · 설정 하위 5화면 HIG · 키보드 미리보기. 시뮬레이터에서 전부 끝까지 실행 확인
 
+## 버전 높은 앱부터 테스트 (2026-11-11)
+- [x] 클립키보드 5.1.20: 플랜 4개를 최신 빌드에 맞춰 고치고 전부 실행 (백지 첫 실행 · 탭 숨김 인자, 뒤로 버튼, 실제 페이월 추가). 결과는 `Examples/clipkeyboard/README.md`
+- [x] CLI SwiftPM 빌드 오류 수정 (`ShellError` public init)
+- [ ] 다음 차례: 탭클립키보드 5.1.9(macOS) → 달빛 4.1.2 → 골드위크 2.4.5 → 두번알림 2.3.6
+
 ## 후속
 - [ ] HIG 검사: 같은 탭 안에 겹쳐 둔 비가시 화면(클립키보드 목록 밑 키보드 미리보기)의 요소가 함께 잡힘 — 불투명한 형제 뷰에 완전히 덮인 요소 제외 검토
 - [ ] HIG 검사: SwiftUI Toggle의 스위치 요소 `missing-label` 거짓 양성 가능성 확인

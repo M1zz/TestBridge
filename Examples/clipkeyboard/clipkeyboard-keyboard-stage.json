@@ -2,9 +2,6 @@
   "name": "clipkeyboard-keyboard-stage",
   "platform": "ios",
   "bundleIdentifier": "com.Ysoup.TokenMemo",
-  "destination": {
-    "udid": "B3935680-1425-42BD-9898-95AFD9325244"
-  },
   "launchArguments": [
     "-AppleLanguages",
     "(ko)",
@@ -29,20 +26,19 @@
     "-feedbackNudgeOptOutDate",
     "1762700000",
     "-snippetsTabStyle.v1",
-    "keyboard"
+    "keyboard",
+    "-blankStart.v1",
+    "NO",
+    "-blankStart.finished.v1",
+    "YES",
+    "-userState.showsAllFeatures.v1",
+    "YES"
   ],
   "stopOnFailure": false,
   "steps": [
     {
       "action": "wait",
       "seconds": 3
-    },
-    {
-      "action": "tap",
-      "target": {
-        "type": "staticText",
-        "label": "기본"
-      }
     },
     {
       "action": "wait",
@@ -99,7 +95,7 @@
       "action": "tap",
       "target": {
         "type": "button",
-        "id": "number"
+        "label": "조작 키 펼치기"
       }
     },
     {
@@ -108,11 +104,11 @@
     },
     {
       "action": "screenshot",
-      "name": "number-pane"
+      "name": "control-keys"
     },
     {
       "action": "higAudit",
-      "name": "number-pane",
+      "name": "control-keys",
       "failOn": "error"
     }
   ]

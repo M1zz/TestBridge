@@ -2,9 +2,6 @@
   "name": "clipkeyboard-create-shortcut",
   "platform": "ios",
   "bundleIdentifier": "com.Ysoup.TokenMemo",
-  "destination": {
-    "udid": "B3935680-1425-42BD-9898-95AFD9325244"
-  },
   "launchArguments": [
     "-AppleLanguages",
     "(ko)",
@@ -29,20 +26,19 @@
     "-feedbackNudgeOptOutDate",
     "1762700000",
     "-snippetsTabStyle.v1",
-    "list"
+    "list",
+    "-blankStart.v1",
+    "NO",
+    "-blankStart.finished.v1",
+    "YES",
+    "-userState.showsAllFeatures.v1",
+    "YES"
   ],
   "stopOnFailure": false,
   "steps": [
     {
       "action": "wait",
       "seconds": 3
-    },
-    {
-      "action": "tap",
-      "target": {
-        "type": "staticText",
-        "label": "기본"
-      }
     },
     {
       "action": "wait",

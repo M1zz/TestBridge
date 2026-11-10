@@ -11,6 +11,7 @@ public struct ShellResult: Sendable {
 
 public struct ShellError: Error, CustomStringConvertible, Sendable {
     public let description: String
+    public init(description: String) { self.description = description }
 }
 
 /// Runs subprocesses with streaming output. Everything TestBridge does on the host
