@@ -1480,6 +1480,26 @@
           }
         }
       }
+    },
+    "All apps": {
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "모든 앱"
+          }
+        }
+      }
+    },
+    "App": {
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "앱"
+          }
+        }
+      }
     }
   },
   "version": "1.1"

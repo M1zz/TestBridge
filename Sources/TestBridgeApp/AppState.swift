@@ -74,22 +74,30 @@ final class AppState {
     /// The developer's own apps from `Apps.json`; picking one fills the platform and bundle identifier.
     var appPresets: [AppPreset] = AppPreset.load()
 
-    /// Plans grouped by the app they test, the current target's app first. Named apps come from `Apps.json`;
+    /// Plans grouped by the app they test, sorted by app name. Named apps come from `Apps.json`;
     /// anything else is grouped under its bundle identifier.
-    var planGroups: [(title: String, files: [PlanFile])] {
+    var planGroups: [(bundle: String, title: String, files: [PlanFile])] {
         let names = Dictionary(appPresets.map { ($0.bundleIdentifier, $0.name) }, uniquingKeysWith: { first, _ in first })
-        let grouped = Dictionary(grouping: plans) { $0.plan?.bundleIdentifier ?? "" }
-        return grouped.map { (bundle: $0.key, title: names[$0.key] ?? $0.key, files: $0.value) }
-            .sorted { a, b in
-                if (a.bundle == bundleIdentifier) != (b.bundle == bundleIdentifier) { return a.bundle == bundleIdentifier }
-                return a.title.localizedStandardCompare(b.title) == .orderedAscending
-            }
-            .map { (title: $0.title, files: $0.files) }
+        return Dictionary(grouping: plans) { $0.plan?.bundleIdentifier ?? "" }
+            .map { (bundle: $0.key, title: names[$0.key] ?? $0.key, files: $0.value) }
+            .sorted { $0.title.localizedStandardCompare($1.title) == .orderedAscending }
+    }
+
+    /// The plan list shows one app at a time: the target app. Picking an app there retargets everything.
+    func showPlans(forBundle bundle: String) {
+        guard let group = planGroups.first(where: { $0.bundle == bundle }) else { return }
+        if let platform = group.files.compactMap(\.plan?.platform).first { self.platform = platform }
+        bundleIdentifier = bundle
+        if !group.files.contains(where: { $0.id == selectedPlanID }) {
+            selectedPlanID = group.files.first?.id
+            loadEditor()
+        }
     }
 
     func select(_ preset: AppPreset) {
         platform = preset.platform
         bundleIdentifier = preset.bundleIdentifier
+        showPlans(forBundle: preset.bundleIdentifier)
     }
 
     var runnerProjectPath: String = Paths.defaultRunnerProject().path {
