@@ -14,6 +14,8 @@ public enum Paths {
     public static var inbox: URL { subdir("Inbox") }
     public static var derivedData: URL { subdir("DerivedData") }
     public static var snapshots: URL { subdir("Snapshots") }
+    /// The developer's own apps (`AppPreset`). Optional; the target picker hides its menu when the file is missing.
+    public static var apps: URL { appSupport.appendingPathComponent("Apps.json") }
 
     private static func subdir(_ name: String) -> URL {
         let dir = appSupport.appendingPathComponent(name, isDirectory: true)

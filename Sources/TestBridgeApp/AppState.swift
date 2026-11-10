@@ -71,6 +71,14 @@ final class AppState {
     var bundleIdentifier: String = UserDefaults.standard.string(forKey: "bundleIdentifier") ?? "" {
         didSet { UserDefaults.standard.set(bundleIdentifier, forKey: "bundleIdentifier") }
     }
+    /// The developer's own apps from `Apps.json`; picking one fills the platform and bundle identifier.
+    var appPresets: [AppPreset] = AppPreset.load()
+
+    func select(_ preset: AppPreset) {
+        platform = preset.platform
+        bundleIdentifier = preset.bundleIdentifier
+    }
+
     var runnerProjectPath: String = Paths.defaultRunnerProject().path {
         didSet { UserDefaults.standard.set(runnerProjectPath, forKey: "runnerProjectPath") }
     }

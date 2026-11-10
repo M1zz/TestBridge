@@ -139,10 +139,28 @@ struct TargetSummary: View {
             }
             .labelsHidden()
             .frame(maxWidth: .infinity)
-            TextField("Bundle identifier", text: $state.bundleIdentifier)
-                .textFieldStyle(.roundedBorder)
-                .font(.body)
-                .frame(maxWidth: .infinity)
+            HStack(spacing: 4) {
+                TextField("Bundle identifier", text: $state.bundleIdentifier)
+                    .textFieldStyle(.roundedBorder)
+                    .font(.body)
+                    .frame(maxWidth: .infinity)
+                if !state.appPresets.isEmpty {
+                    Menu {
+                        ForEach(state.appPresets) { preset in
+                            Button { state.select(preset) } label: {
+                                Text(verbatim: "\(preset.name) · \(preset.platform.displayName)")
+                            }
+                        }
+                    } label: {
+                        Image(systemName: "square.grid.2x2")
+                    }
+                    .menuStyle(.borderlessButton)
+                    .menuIndicator(.hidden)
+                    .fixedSize()
+                    .help("My apps")
+                    .accessibilityLabel("My apps")
+                }
+            }
             Picker("Device", selection: $state.selectedDeviceID) {
                 ForEach(state.devicesForPlatform) { d in
                     Text("\(shortName(d.name))\(d.isBooted ? " ●" : "")").tag(Optional(d.id))

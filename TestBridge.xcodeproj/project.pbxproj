@@ -21,13 +21,16 @@
 		3BC858B4C743C2C053A72095 /* ClaudeMDSnippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D02028C91228DE70522138 /* ClaudeMDSnippet.swift */; };
 		3C0F2A96D6E8D0BB0A13A30F /* RunProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B72242E21D9E71B71947F /* RunProgress.swift */; };
 		43180035D2D9E83EE1D42172 /* PlanSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1486016853B75B2B5E48078 /* PlanSchema.swift */; };
+		455433A769E4A9FFEDD0E890 /* AppPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879F611DE2A3BE36839FD7FB /* AppPreset.swift */; };
 		50E3C1E585616ABE39496CB0 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61686700007A6A0DA12AC419 /* AppState.swift */; };
 		533D377333915E81B7324844 /* XcodebuildService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CBF52C8D66FF4B499ECE0 /* XcodebuildService.swift */; };
 		53F8B778E3ECCD1097846481 /* DevicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684C8B9BB567DE23C7B62890 /* DevicesView.swift */; };
 		54D191520F7171FE18DADC4B /* ShellRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4853CD318DA08138951AAB4D /* ShellRunner.swift */; };
 		55EDE893597BDD325BC150F6 /* PromptBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE6F870661CEADCCE00579 /* PromptBuilder.swift */; };
+		57CAE2E9BF4B3DB82A48E1F1 /* AppPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879F611DE2A3BE36839FD7FB /* AppPreset.swift */; };
 		5906C92087854757C18BA620 /* ClaudeMDSnippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D02028C91228DE70522138 /* ClaudeMDSnippet.swift */; };
 		621625AF0427F9BEE4DCCB58 /* PlanInbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3236BB1423283CA59492527C /* PlanInbox.swift */; };
+		6D3F1557ECBC0D62CF20E087 /* AppPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879F611DE2A3BE36839FD7FB /* AppPreset.swift */; };
 		7114128B34366603A968521B /* PlanEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56334467EC487617930AFAD /* PlanEditorView.swift */; };
 		741A94E0585FE1D6CBFAF8DD /* HIGAuditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643C6A08A490FBF841820D3B /* HIGAuditView.swift */; };
 		843373E0EC268172FC123C41 /* HIGAudit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FA4F9A88DEA3F30B46B146 /* HIGAudit.swift */; };
@@ -86,6 +89,7 @@
 		6EECDD72D40870B40E37EFCF /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		745CBF52C8D66FF4B499ECE0 /* XcodebuildService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodebuildService.swift; sourceTree = "<group>"; };
 		7E7B562C70CAF82EEE689091 /* RunConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunConsoleView.swift; sourceTree = "<group>"; };
+		879F611DE2A3BE36839FD7FB /* AppPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPreset.swift; sourceTree = "<group>"; };
 		A118059D4F03793B975117A3 /* RunReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunReport.swift; sourceTree = "<group>"; };
 		A566B065BADEF2F18575E14A /* TestBridgeCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestBridgeCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAFE6F870661CEADCCE00579 /* PromptBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptBuilder.swift; sourceTree = "<group>"; };
@@ -214,6 +218,7 @@
 		D0ACA5E78103D1D6549609E2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				879F611DE2A3BE36839FD7FB /* AppPreset.swift */,
 				345B72242E21D9E71B71947F /* RunProgress.swift */,
 				4853CD318DA08138951AAB4D /* ShellRunner.swift */,
 				397D352B5061AB8CF9664119 /* SimctlService.swift */,
@@ -345,6 +350,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57CAE2E9BF4B3DB82A48E1F1 /* AppPreset.swift in Sources */,
 				B1CFD4249A149357A0FC0A7E /* CLI.swift in Sources */,
 				C7595DC5E15408676C0A60CF /* ClaudeCLI.swift in Sources */,
 				CCD3EFEB0C1A0F7A97423DAB /* ClaudeMDSnippet.swift in Sources */,
@@ -367,6 +373,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D3F1557ECBC0D62CF20E087 /* AppPreset.swift in Sources */,
 				D237DA02466321D0A12F10C7 /* ClaudeCLI.swift in Sources */,
 				5906C92087854757C18BA620 /* ClaudeMDSnippet.swift in Sources */,
 				843373E0EC268172FC123C41 /* HIGAudit.swift in Sources */,
@@ -390,6 +397,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				455433A769E4A9FFEDD0E890 /* AppPreset.swift in Sources */,
 				50E3C1E585616ABE39496CB0 /* AppState.swift in Sources */,
 				F597DD7AE33A40F2128CA33A /* ClaudeAssistantView.swift in Sources */,
 				328C47A992B0E29661914773 /* ClaudeCLI.swift in Sources */,

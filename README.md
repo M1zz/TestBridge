@@ -68,7 +68,7 @@ TestBridge가 하는 일은 세 겹입니다.
 
 ## HIG 검사 루프 (GUI)
 
-1. 사이드바 하단 **Target**에서 플랫폼 · 번들 ID · 디바이스를 고릅니다.
+1. 사이드바 하단 **Target**에서 플랫폼 · 번들 ID · 디바이스를 고릅니다. `~/Library/Application Support/TestBridge/Apps.json`에 내 앱 목록(`[{"name": "…", "bundleIdentifier": "…", "platform": "ios"}]`)을 두면 번들 ID 옆 메뉴에서 이름으로 고를 수 있습니다.
 2. **HIG** 탭 → **Audit first screen** (⇧⌘H). 앱이 뜨고 첫 화면의 모든 요소가 측정됩니다. 결과는 심각도별로 나뉘고, 항목마다 HIG 페이지 링크가 있습니다.
 3. **Ask Claude to review** → Claude Code 탭이 "Review HIG compliance" 모드로 열립니다. **Send to Claude Code**(headless) 또는 **Copy prompt**로 보내면 `higReview` 응답이 옵니다: 판정(pass / needs-work / fail), 요약, HIG 링크가 붙은 항목들, 그리고 다음 화면들을 검사할 플랜.
 4. 플랜이 왔으면 **Save and run**. 플랜은 화면을 돌며 `higAudit`을 실행하고, 결과는 Runs 탭과 HIG 탭에 화면별로 쌓입니다.
