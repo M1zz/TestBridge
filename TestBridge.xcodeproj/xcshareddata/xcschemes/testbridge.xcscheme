@@ -15,9 +15,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "482598C367DEC7924709541A"
-               BuildableName = "TestBridge.app"
-               BlueprintName = "TestBridge"
+               BlueprintIdentifier = "9A7383F7F3DA13A083178993"
+               BuildableName = "testbridge"
+               BlueprintName = "testbridge"
                ReferencedContainer = "container:TestBridge.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "482598C367DEC7924709541A"
-            BuildableName = "TestBridge.app"
-            BlueprintName = "TestBridge"
+            BlueprintIdentifier = "9A7383F7F3DA13A083178993"
+            BuildableName = "testbridge"
+            BlueprintName = "testbridge"
             ReferencedContainer = "container:TestBridge.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -55,9 +55,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "482598C367DEC7924709541A"
-            BuildableName = "TestBridge.app"
-            BlueprintName = "TestBridge"
+            BlueprintIdentifier = "9A7383F7F3DA13A083178993"
+            BuildableName = "testbridge"
+            BlueprintName = "testbridge"
             ReferencedContainer = "container:TestBridge.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -74,9 +74,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "482598C367DEC7924709541A"
-            BuildableName = "TestBridge.app"
-            BlueprintName = "TestBridge"
+            BlueprintIdentifier = "9A7383F7F3DA13A083178993"
+            BuildableName = "testbridge"
+            BlueprintName = "testbridge"
             ReferencedContainer = "container:TestBridge.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

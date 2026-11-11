@@ -34,6 +34,7 @@ targets:
         ENABLE_USER_SCRIPT_SANDBOXING: NO
         # String Catalog (Sources/TestBridgeApp/Resources/Localizable.xcstrings): en source, ko translations.
         SWIFT_EMIT_LOC_STRINGS: YES
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
 
   testbridge:
     type: tool
